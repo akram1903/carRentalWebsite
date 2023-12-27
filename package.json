@@ -1,0 +1,16 @@
+{
+  "name": "carrentalwebsite",
+  "version": "1.0.0",
+  "description": "car rental website using php and bootstrap and mysql",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "tailwindcss build src/styles.css -o public/styles.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "tailwindcss": "^3.4.0"
+  }
+}
