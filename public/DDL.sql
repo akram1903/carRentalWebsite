@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `CarRentalSystem`.`office` (
   `password` VARCHAR(45) NOT NULL,
   `building_No` VARCHAR(45) NULL,
   PRIMARY KEY (`office_id`),
-  UNIQUE INDEX `office_id_UNIQUE` (`office_id` ASC) VISIBLE)
+  UNIQUE INDEX `office_id_UNIQUE` (`office_id` ASC) )
 ENGINE = InnoDB;
 
 
@@ -46,8 +46,8 @@ CREATE TABLE IF NOT EXISTS `CarRentalSystem`.`Car` (
   `registration_date` DATE NULL DEFAULT CURRENT_TIMESTAMP,
   `office_office_id` INT NOT NULL,
   PRIMARY KEY (`plate_id`),
-  UNIQUE INDEX `plate_id_UNIQUE` (`plate_id` ASC) VISIBLE,
-  INDEX `fk_Car_office1_idx` (`office_office_id` ASC) VISIBLE,
+  UNIQUE INDEX `plate_id_UNIQUE` (`plate_id` ASC) ,
+  INDEX `fk_Car_office1_idx` (`office_office_id` ASC) ,
   CONSTRAINT `fk_Car_office1`
     FOREIGN KEY (`office_office_id`)
     REFERENCES `CarRentalSystem`.`office` (`office_id`)
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `CarRentalSystem`.`Car_Photos` (
   `photo` VARCHAR(512) NOT NULL,
   `Car_plate_id` VARCHAR(8) NOT NULL,
   PRIMARY KEY (`photo`, `Car_plate_id`),
-  INDEX `fk_Car_Photos_Car_idx` (`Car_plate_id` ASC) VISIBLE,
+  INDEX `fk_Car_Photos_Car_idx` (`Car_plate_id` ASC) ,
   CONSTRAINT `fk_Car_Photos_Car`
     FOREIGN KEY (`Car_plate_id`)
     REFERENCES `CarRentalSystem`.`Car` (`plate_id`)
@@ -83,7 +83,6 @@ CREATE TABLE IF NOT EXISTS `CarRentalSystem`.`Customer` (
   `phone_no` CHAR(11) NOT NULL,
   `password` VARCHAR(45) NULL,
   `wallet` DOUBLE NULL,
-  `Customercol` VARCHAR(45) NULL,
   PRIMARY KEY (`ssn`))
 ENGINE = InnoDB;
 
@@ -103,8 +102,8 @@ CREATE TABLE IF NOT EXISTS `CarRentalSystem`.`reservation` (
   `payment_date` VARCHAR(45) NULL,
   `payment_Method` VARCHAR(45) NULL,
   PRIMARY KEY (`reservation_no`),
-  INDEX `fk_reservation_Car1_idx` (`Car_plate_id` ASC) VISIBLE,
-  INDEX `fk_reservation_Customer1_idx` (`Customer_ssn` ASC) VISIBLE,
+  INDEX `fk_reservation_Car1_idx` (`Car_plate_id` ASC) ,
+  INDEX `fk_reservation_Customer1_idx` (`Customer_ssn` ASC) ,
   CONSTRAINT `fk_reservation_Car1`
     FOREIGN KEY (`Car_plate_id`)
     REFERENCES `CarRentalSystem`.`Car` (`plate_id`)
@@ -127,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `CarRentalSystem`.`credit_card` (
   `CVV` CHAR(3) NOT NULL,
   `exp_date` DATE NOT NULL,
   PRIMARY KEY (`card_no`),
-  UNIQUE INDEX `card_no_UNIQUE` (`card_no` ASC) VISIBLE)
+  UNIQUE INDEX `card_no_UNIQUE` (`card_no` ASC) )
 ENGINE = InnoDB;
 
 
@@ -139,8 +138,8 @@ CREATE TABLE IF NOT EXISTS `CarRentalSystem`.`customer_credit` (
   `credit_card_card_no` INT NOT NULL,
   `Customer_ssn` INT NOT NULL,
   PRIMARY KEY (`ssn`, `credit_card_card_no`, `Customer_ssn`),
-  INDEX `fk_customer_credit_credit_card1_idx` (`credit_card_card_no` ASC) VISIBLE,
-  INDEX `fk_customer_credit_Customer1_idx` (`Customer_ssn` ASC) VISIBLE,
+  INDEX `fk_customer_credit_credit_card1_idx` (`credit_card_card_no` ASC) ,
+  INDEX `fk_customer_credit_Customer1_idx` (`Customer_ssn` ASC) ,
   CONSTRAINT `fk_customer_credit_credit_card1`
     FOREIGN KEY (`credit_card_card_no`)
     REFERENCES `CarRentalSystem`.`credit_card` (`card_no`)
@@ -161,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `CarRentalSystem`.`Admin` (
   `email` INT NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`email`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE)
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) )
 ENGINE = InnoDB;
 
 

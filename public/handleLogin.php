@@ -4,7 +4,7 @@
 <?php
 //1-Validation of Email and password not empty
 require_once('classesOop.php');
-//open session so that the user object returned form login function is seen by all pages 
+//open session so that the customer object returned form login function is seen by all pages 
 session_start();
 if (!empty($_POST['email']) && !empty($_POST['password'])) {
 
@@ -17,13 +17,13 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
     $password = md5(trim($_POST['password']));
     //md5 used for encryption of password but password must be inserted in DB encrypted(MD5)
 
-    //call static function from class user without creating Object
-    $user = customer::login($email, $password); //returns user either found or null
-    if (!empty($user)) {
-        //if user found before redirecting to home put in sesseion
+    //call static function from class customer without creating Object
+    $customer = customer::login($email, $password); //returns customer either found or null
+    if (!empty($customer)) {
+        //if customer found before redirecting to home put in sesseion
         //To put object in session you must use->serialize
         // $_SESSION["KeyName"]=serialize($ObjectName);
-        $_SESSION["user"] = serialize($user);
+        $_SESSION["customer"] = serialize($customer);
         header("location:home.php");
     } else {
         header("location:index.php?msg=Wrong_Credintials");
