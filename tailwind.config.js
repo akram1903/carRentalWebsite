@@ -5,6 +5,9 @@ module.exports = {
     './public/**/*.php',
     './src/**/*.{html,js}',
   ],
+
+  plugins: [require('@tailwindcss/forms')],
+
   presets: [],
   darkMode: 'media', // or 'class'
   theme: {

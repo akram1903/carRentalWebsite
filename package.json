@@ -4,13 +4,15 @@
   "description": "car rental website using php and bootstrap and mysql",
   "main": "index.js",
   "scripts": {
-    "build-css": "tailwindcss build src/styles.css -o public/styles.css"
+    "build-css": "npx tailwindcss build -i ./src/styles.css -o ./public/styles.css --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/forms": "^0.5.7"
+  },
+  "devDependencies": {
     "tailwindcss": "^3.4.0"
   }
 }
