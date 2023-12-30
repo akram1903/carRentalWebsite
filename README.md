@@ -1,2 +1,2 @@
 # carRentalWebsite
-car rental website using php and bootstrap and mysql
+car rental website using php and tailwind and mysql
