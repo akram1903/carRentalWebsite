@@ -31,7 +31,7 @@ class customer
         //connection with database
         require_once('config.php'); //gets page data once 
         //query to Check User in database with correct email and password 
-        $qry = "SELECT * FROM Customer WHERE email='$email' AND password='$password'";
+        $qry = "SELECT * FROM customer WHERE email='$email' AND password='$password'";
         //Double quotation to detect variables
         //email and passeord are strings -> ' '
         $cn = mysqli_connect(DB_host, DB_user_name, DB_user_password, DB_name);
@@ -41,16 +41,16 @@ class customer
         //this is to execute the query takes 1-connection 2-query 
         //This gets data so you must fetch:
         if ($data = mysqli_fetch_assoc($result)) { //returns associative array if there is a user found with this information in DB
-            switch ($data["role"]) {
+           // switch ($data["role"]) {
                     //Make the object according to the role either user or admin
-                case 'customer':
+                //case 'customer':
                     $customer = new customer($data["ssn"], $data["fName"], $data["lName"], $data["email"], $data["password"],$data["phone_no"],$data["wallet"]);
-                    break;
+                //    break;
 
-                case 'admin':
-                    $customer = new admin($data["ssn"], $data["fName"], $data["lName"], $data["email"], $data["password"],$data["phone_no"],$data["wallet"]);
-                    break;
-            }
+                //case 'admin':
+                  //  $customer = new admin($data["ssn"], $data["fName"], $data["lName"], $data["email"], $data["password"],$data["phone_no"],$data["wallet"]);
+                  //  break;
+         //   }
         }
         mysqli_close($cn); //you must close the connection
         return $customer;
@@ -61,7 +61,7 @@ class customer
         //connection with database
         require_once('config.php'); //gets page data once 
         //query to Insert User in database 
-        $qry = "INSERT INTO Customer(fName,lName,email,password,phone_no) VALUES('$fName','$lName','$email','$password','$phone_no')";
+        $qry = "INSERT INTO customer(fName,lName,email,password,phone_no) VALUES('$fName','$lName','$email','$password','$phone_no')";
         //Double quotation o detect variables
         //email and passeord are strings -> ' '
         $cn = mysqli_connect(DB_host, DB_user_name, DB_user_password, DB_name);

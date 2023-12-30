@@ -4,6 +4,7 @@
 define('DB_name', 'CarRentalSystem');
 define('DB_user_name', 'root');
 define('DB_user_password', '123456');
-define('DB_host', 'host.docker.internal');
+//define('DB_host', 'host.docker.internal');
+define('DB_host', 'localhost');
 
 ?>

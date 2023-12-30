@@ -76,7 +76,7 @@ ENGINE = InnoDB;
 -- Table `CarRentalSystem`.`Customer`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `CarRentalSystem`.`Customer` (
-  `ssn` INT NOT NULL,
+  `ssn` INT NOT NULL AUTO_INCREMENT,
   `fName` VARCHAR(45) NOT NULL,
   `lName` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,

@@ -2,11 +2,15 @@
 
 module.exports = {
   content: [
+    "./node_modules/flowbite/**/*.js",
     './public/**/*.php',
-    './src/**/*.{html,js}',
+    './src/**/*.{html,js}'
   ],
 
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('flowbite/plugin')
+],
 
   presets: [],
   darkMode: 'media', // or 'class'
