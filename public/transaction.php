@@ -8,9 +8,40 @@
     <link rel="stylesheet" href="styles.css">
     <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css" rel="stylesheet">
-
+    <script src="transaction.js"></script>
     <style>
-       
+        .custom-alert {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px;
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            display: none;
+            z-index: 9999;
+        }
+
+        .custom-alert-text {
+            margin-right: 10px;
+        }
+
+        .close-alert {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            float: right;
+        }
+
+        .close-alert:hover {
+            background-color: #c82333;
+        }
+
         .form-radio {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -93,86 +124,103 @@
 
 <body>
     <div class="min-w-screen min-h-screen bg-gray-200 flex items-center justify-center px-5 pb-10 pt-16">
-        <div class="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700" style="max-width: 600px">
-            <div class="w-full pt-1 pb-5">
-                <div class="bg-indigo-500 text-white overflow-hidden rounded-full w-20 h-20 -mt-16 mx-auto shadow-lg flex justify-center items-center">
-                    <i class="mdi mdi-credit-card-outline text-3xl"></i>
+        <form action="handleTransaction.php" method="post" class=" w-full ">
+            <div class="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700" style="max-width: 600px">
+                <div class="w-full pt-1 pb-5">
+                    <div class="bg-indigo-500 text-white overflow-hidden rounded-full w-20 h-20 -mt-16 mx-auto shadow-lg flex justify-center items-center">
+                        <i class="mdi mdi-credit-card-outline text-3xl"></i>
+                    </div>
                 </div>
-            </div>
-            <div class="mb-10">
-                <h1 class="text-center font-bold text-xl uppercase">Secure payment info</h1>
-            </div>
-            <div class="mb-3 flex -mx-2">
-                <div class="px-2">
-                    <label for="type1" class="flex items-center cursor-pointer">
-                        <input type="radio" class="form-radio h-5 w-5 text-indigo-500" name="type" id="type1" checked>
-                        <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png" class="h-8 ml-3">
-                    </label>
+                <div class="mb-10">
+                    <h1 class="text-center font-bold text-xl uppercase">Secure payment info</h1>
                 </div>
-                <div class="px-2">
-                    <label for="type2" class="flex items-center cursor-pointer">
-                        <input type="radio" class="form-radio h-5 w-5 text-indigo-500" name="type" id="type2">
-                        <img src="https://www.sketchappsources.com/resources/source-image/PayPalCard.png" class="h-8 ml-3">
-                    </label>
+                <div class="mb-3 flex -mx-2">
+                    <div class="px-2">
+                        <label for="type1" class="flex items-center cursor-pointer">
+                            <input type="radio" class="form-radio h-5 w-5 text-indigo-500" name="type1" checked>
+                            <img src="https://leadershipmemphis.org/wp-content/uploads/2020/08/780370.png" class="h-8 ml-3">
+                        </label>
+                    </div>
+                    <div class="px-2">
+                        <label for="type2" class="flex items-center cursor-pointer">
+                            <input type="radio" class="form-radio h-5 w-5 text-indigo-500" name="type2">
+                            <img src="https://www.sketchappsources.com/resources/source-image/PayPalCard.png" class="h-8 ml-3">
+                        </label>
+                    </div>
                 </div>
-            </div>
-            <div class="mb-3">
-                <label class="font-bold text-sm mb-2 ml-1">Name on card</label>
-                <div>
-                    <input class="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="John Smith" type="text" />
-                </div>
-            </div>
-            <div class="mb-3">
-                <label class="font-bold text-sm mb-2 ml-1">Card number</label>
-                <div>
-                    <input class="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="0000 0000 0000 0000" type="text" />
-                </div>
-            </div>
-            <div class="mb-3 -mx-2 flex items-end">
-                <div class="px-2 w-1/2">
-                    <label class="font-bold text-sm mb-2 ml-1">Expiration date</label>
+                <div class="mb-3">
+                    <label class="font-bold text-sm mb-2 ml-1">Name on card</label>
                     <div>
-                        <select class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
-                            <option value="01">01 - January</option>
-                            <option value="02">02 - February</option>
-                            <option value="03">03 - March</option>
-                            <option value="04">04 - April</option>
-                            <option value="05">05 - May</option>
-                            <option value="06">06 - June</option>
-                            <option value="07">07 - July</option>
-                            <option value="08">08 - August</option>
-                            <option value="09">09 - September</option>
-                            <option value="10">10 - October</option>
-                            <option value="11">11 - November</option>
-                            <option value="12">12 - December</option>
+                        <input name="name_on_card" class="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="Enter full name" type="text" />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="font-bold text-sm mb-2 ml-1">Card number</label>
+                    <div>
+                        <input name="card_number" class="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="0000 0000 0000 0000" type="text" />
+                    </div>
+                </div>
+                <div class="mb-3 -mx-2 flex items-end">
+                    <div class="px-2 w-1/2">
+                        <label class="font-bold text-sm mb-2 ml-1">Expiration date</label>
+                        <div>
+                            <select name="expiration_month" class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                                <option value="01">01 - January</option>
+                                <option value="02">02 - February</option>
+                                <option value="03">03 - March</option>
+                                <option value="04">04 - April</option>
+                                <option value="05">05 - May</option>
+                                <option value="06">06 - June</option>
+                                <option value="07">07 - July</option>
+                                <option value="08">08 - August</option>
+                                <option value="09">09 - September</option>
+                                <option value="10">10 - October</option>
+                                <option value="11">11 - November</option>
+                                <option value="12">12 - December</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="px-2 w-1/2">
+                        <select name="expiration_year" class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
+                            <option value="2020">2024</option>
+                            <option value="2021">2025</option>
+                            <option value="2022">2026</option>
+                            <option value="2023">2027</option>
+                            <option value="2024">2028</option>
+                            <option value="2025">2029</option>
+                            <option value="2026">2030</option>
+                            <option value="2027">2031</option>
+                            <option value="2028">2032</option>
+                            <option value="2029">2033</option>
                         </select>
                     </div>
                 </div>
-                <div class="px-2 w-1/2">
-                    <select class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer">
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
-                        <option value="2027">2027</option>
-                        <option value="2028">2028</option>
-                        <option value="2029">2029</option>
-                    </select>
+                <div class="mb-10">
+                    <label class="font-bold text-sm mb-2 ml-1">Security code</label>
+                    <div>
+                        <input name="security_code" class="w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="000" type="text" />
+                    </div>
                 </div>
-            </div>
-            <div class="mb-10">
-                <label class="font-bold text-sm mb-2 ml-1">Security code</label>
                 <div>
-                    <input class="w-32 px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors" placeholder="000" type="text" />
+                    <button class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"><i class="mdi mdi-lock-outline mr-1"></i> PAY NOW</button>
+                <!-- </div>
+                <div id="customAlert" class="bg-red-100 border border-red-400 text-red-700 px-4 m-1 py-2 rounded relative">
+                    <span id="customAlertText" class="block sm:inline"></span>
+                    <button id="closeAlert" class="close-alert">Close</button>
+                </div> -->
+
+                <div class="bg-red-100 border border-red-400 text-red-700 m-2 px-2 py-2 rounded relative hidden" id="customAlert" role="alert">
+                <!-- <strong class="font-bold">OUCH!</strong> -->
+                <span class="block sm:inline" id="customAlertText"></span>
+                <span class="absolute top-0 bottom-0 right-0 m-1 px-1 py-1">
+                    <svg class="fill-current h-6 w-6 text-red-500" id="closeAlert" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"/></svg>
+                </span>
                 </div>
             </div>
-            <div>
-                <button class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"><i class="mdi mdi-lock-outline mr-1"></i> PAY NOW</button>
-            </div>
-        </div>
+
+        </form>
+
+
     </div>
 
 </body>
