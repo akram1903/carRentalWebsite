@@ -29,15 +29,15 @@ class customer
     {
         $customer = null;
         //connection with database
-        require_once('config.php'); //gets page data once 
+        require_once('connection.php'); //gets page data once 
         //query to Check User in database with correct email and password 
-        $qry = "SELECT * FROM customer WHERE email='$email' AND password='$password'";
+        $qry = "SELECT * FROM Customer WHERE email='$email' AND password='$password'";
         //Double quotation to detect variables
         //email and passeord are strings -> ' '
-        $cn = mysqli_connect(DB_host, DB_user_name, DB_user_password, DB_name);
+        $cn = Connect();
         //Connect not secure attack->SQL injection instead use BDO object
-        var_dump($cn);
-        $result = mysqli_query($cn, $qry);
+        // var_dump($cn);
+        $result = $cn->query($qry);
         //this is to execute the query takes 1-connection 2-query 
         //This gets data so you must fetch:
         if ($data = mysqli_fetch_assoc($result)) { //returns associative array if there is a user found with this information in DB
@@ -52,31 +52,41 @@ class customer
                   //  break;
          //   }
         }
-        mysqli_close($cn); //you must close the connection
+        $cn->close(); //you must close the connection
         return $customer;
     }
     static function signUp($email, $password, $fName,$lName,$phone_no)
     {
-        $user = null;
         //connection with database
-        require_once('config.php'); //gets page data once 
+        require_once('connection.php');
+        $cn = Connect();
+
+        //gets page data once 
         //query to Insert User in database 
-        $qry = "INSERT INTO customer(fName,lName,email,password,phone_no) VALUES('$fName','$lName','$email','$password','$phone_no')";
+        $qry = "INSERT INTO Customer(fName,lName,email,password,phone_no) VALUES('$fName','$lName','$email','$password','$phone_no')";
         //Double quotation o detect variables
         //email and passeord are strings -> ' '
-        $cn = mysqli_connect(DB_host, DB_user_name, DB_user_password, DB_name);
+        
+        
         //Connect not secure attack->SQL injection instead use BDO object
         // var_dump($cn);
         //this is to execute the query takes 1-connection 2-query this line where error may occurs->Exception try and catch
         try {
-            $result = mysqli_query($cn, $qry);
+            $result = $cn->query($qry);
+            if($result === TRUE){
+                echo "Signed up successfully";
+            }
+            else{
+                echo "signed up unsuccessfull";
+                var_dump($cn);
+            }
             //This dont get data so you nofetch:
-            mysqli_close($cn); //you must close the connection
+            $cn->close(); //you must close the connection
             return $result;
 
-            header("location:index.php?Successful_Registeration");
+            // header("location:index.php?Successful_Registeration");
         } catch (\Throwable $th) {
-            mysqli_close($cn);
+            $cn->close();
             header("location:SignUp.php?msg=Email_Exists");
         }
         //Note: even if it entered catch it executes what is after it
@@ -97,3 +107,4 @@ class admin extends customer
     {
     }
 }
+?>
