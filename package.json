@@ -4,16 +4,19 @@
   "description": "car rental website using php and bootstrap and mysql",
   "main": "index.js",
   "scripts": {
-    "build-css": "npx tailwindcss build -i ./src/styles.css -o ./public/styles.css --watch"
+    "build-css": "npx tailwindcss build -i ./src/styles.css -o ./public/styles.css --watch",
+    "build:css": "./node_modules/.bin/postcss styles.css -o output.css"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@tailwindcss/forms": "^0.5.7",
-    "flowbite": "^2.2.1"
+    "flowbite": "^2.2.1",
+    "swiper": "^11.0.5"
   },
   "devDependencies": {
+    "postcss": "^8.4.32",
     "tailwindcss": "^3.4.0"
   }
 }

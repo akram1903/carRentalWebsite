@@ -7,12 +7,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+   
+    
+
     <!-- <script defer src="LoginScript.js"></script> -->
 </head> 
 <body class="h-full">
 <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+<!-- <i class="fa-duotone fa-car-garage fa-beat-fade" style="--fa-primary-color: #4d0382; --fa-secondary-color: #000000; --fa-secondary-opacity: 1;"></i> -->
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-      <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+      
+      <img class="mx-auto h-16 w-auto" src="../img/logo.PNG" alt="Your Company">
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Login in to your account</h2>
     </div>
   

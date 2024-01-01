@@ -83,6 +83,33 @@ class customer
 
 
     }
+    //Static->because it is for all users
+    static function showAllCars()
+    {
+
+        require_once('config.php');
+        $qry = "SELECT * FROM car ORDER BY registration_date desc LIMIT 20";
+        $cn = mysqli_connect(DB_host, DB_user_name, DB_user_password, DB_name);
+        $result = mysqli_query($cn, $qry);
+        //query gets data so you must fetch
+        //mysqli_fetch_all()->returns all data (كذا row)
+        //mysqli_fetch_assoc()->returns one row
+        $data = mysqli_fetch_all($result);
+        mysqli_close($cn);
+        return $data;
+    }
+    function getCarPhotos($plate_id)
+    {
+        require_once('config.php');
+        //show posts of the user in descending order
+        //get data from 2 tables in DB use->join
+        $qry = "SELECT photo FROM car_photos where Car_plate_id='$plate_id'";
+        $cn = mysqli_connect(DB_host, DB_user_name, DB_user_password, DB_name);
+        $result = mysqli_query($cn, $qry);
+        $data = mysqli_fetch_all($result);
+        mysqli_close($cn);
+        return $data;
+    }
 
     
 }
