@@ -73,13 +73,13 @@ class customer
         //this is to execute the query takes 1-connection 2-query this line where error may occurs->Exception try and catch
         try {
             $result = $cn->query($qry);
-            if($result === TRUE){
-                echo "Signed up successfully";
-            }
-            else{
-                echo "signed up unsuccessfull";
-                var_dump($cn);
-            }
+            // if($result === TRUE){
+            //     echo "Signed up successfully";
+            // }
+            // else{
+            //     echo "signed up unsuccessfull";
+            //     var_dump($cn);
+            // }
             //This dont get data so you nofetch:
             $cn->close(); //you must close the connection
             return $result;

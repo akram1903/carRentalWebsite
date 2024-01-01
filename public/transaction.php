@@ -123,7 +123,7 @@
 </head>
 
 <body>
-    <div class="min-w-screen min-h-screen bg-gray-200 flex items-center justify-center px-5 pb-10 pt-16">
+    <div class="min-w-screen min-h-screen bg-indigo-100 flex items-center justify-center px-5 pb-10 pt-16">
         <form action="handleTransaction.php" method="post" class=" w-full ">
             <div class="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700" style="max-width: 600px">
                 <div class="w-full pt-1 pb-5">
