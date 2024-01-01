@@ -1,7 +1,7 @@
-<!-- 1-validation
-2-Filteration -->
-
 <?php
+// <!-- 1-validation
+// 2-Filteration -->
+
 //1-Validation of Email and password not empty
 require_once('classesOop.php');
 //open session so that the customer object returned form login function is seen by all pages 

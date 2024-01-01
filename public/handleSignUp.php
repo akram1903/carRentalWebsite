@@ -1,7 +1,8 @@
-<!-- 1-validation
-2-Filteration -->
-
 <?php
+// <!-- 1-validation
+// 2-Filteration -->
+
+
 //1-Validation of Email and password not empty
 require_once('classesOop.php');
 
@@ -18,10 +19,12 @@ if (!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['fNam
     $fName = trim($_POST['fName']);
     $lName = trim($_POST['lName']);
     $phone_no=trim($_POST['phone_no']);
+    
 
     $result = customer::signUp($email, $password, $fName,$lName,$phone_no); //returns customer either found or null
     //after SignUp redirect to LogIn page
     if (!empty($result)) {
+        // echo("<h1>result not empty !!!</h1>");
         header("location:index.php");
     }
    //    else{
@@ -32,4 +35,4 @@ if (!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['fNam
     //Return to the previous page with message in get
     header("location:SignUp.php?msg=empty_field");
 }
-
+?>
