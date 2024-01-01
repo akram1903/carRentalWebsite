@@ -9,7 +9,7 @@ $totalrecords = $query->rowCount();
 
 <?php
 // Assume you have a database connection
-$databaseConnexion = new mysqli("localhost", "root", "", "carrentalsystem");
+$databaseConnexion = new mysqli("localhost", "root", "123456", "carrentalsystem");
 
 // Check connection
 if ($databaseConnexion->connect_error) {
@@ -20,13 +20,12 @@ if ($databaseConnexion->connect_error) {
 $customerEmail = "ali@gmail.com"; // Change this to the email of the customer you want to retrieve
 
 // Query to retrieve data from a specific customer using email
-$query = $databaseConnexion->prepare("SELECT ssn, fName, lName, email, phone_no, password, wallet, Customercol FROM customer WHERE email = ?");
+$query = $databaseConnexion->prepare("SELECT ssn, fName, lName, email, phone_no, password, wallet FROM customer WHERE email = ?");
 $query->bind_param("s", $customerEmail);
 $query->execute();
 
 // Bind the result variables
 $query->bind_result($ssn, $fName, $lName, $email, $phone_no, $password, $wallet, $Customercol);
-
 // Fetch the result
 $query->fetch();
 

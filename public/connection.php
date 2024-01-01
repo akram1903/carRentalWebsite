@@ -1,7 +1,7 @@
 <?php
 function Connect()
 {
-    $dbhost = "host.docker.internal";
+    $dbhost = "localhost";
 	$dbuser = "root";
 	$dbpass = "123456";
 	$dbname = "CarRentalSystem";

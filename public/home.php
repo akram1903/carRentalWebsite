@@ -12,6 +12,7 @@
   $cars = $customer->showAllCars();
   // var_dump($cars);
 
+
   ?>
 <head>
     <meta charset="UTF-8">
@@ -171,7 +172,10 @@
     </div>
   </div>
   <div class="p-6 pt-3">
-    <button
+    <?php
+   $_SESSION["car"] = serialize($car);
+   ?>
+    <button onclick="redirectToAnotherPage()"
       class="block w-full select-none rounded-lg bg-gray-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
       type="button">
       Reserve
@@ -202,6 +206,12 @@
       clickable: true,
     },
   });
+
+    function redirectToAnotherPage() {
+        // Change 'your-page.html' to the actual page URL you want to redirect to
+        window.location.href = 'invoice.php';
+    }
+
 </script>
 </body>
 </html>

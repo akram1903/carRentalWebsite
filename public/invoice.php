@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+  session_start();
+  require_once('navBar.php');
+  if (empty($_SESSION["customer"])) {
+    header("location:forbidden.php");
+  }
+  if (empty($_SESSION["car"])) {
+    header("location:forbidden.php");
+  }
+  require_once('classesOop.php');
+  //To get the user object from session
+  $customer = unserialize($_SESSION["customer"]);
+  $car = unserialize($_SESSION["car"]);
+var_dump($car);
 
+
+  ?>
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -106,44 +122,26 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="text-sm text-gray-900">
-                                            Tesla
+                                            <?=$car["2"]?>
                                         </div>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900">model x</div>
+                                        <div class="text-sm text-gray-900"> <?=$car["1"]?></div>
                                     </td>
+                                    <?
+                                    $duration=3;
+                                    ?>
                                     <td class="px-6 py-4 text-sm text-gray-900">
-                                        3 days
+                                        <?=$duration?>
                                     </td>
                                     <td class="px-6 py-4">
-                                        $30
+                                    <?=$car["4"]?>
                                     </td>
                                     <td class="px-6 py-4">
-                                        $90
+                                    
                                     </td>
                                 </tr>
-                                <tr class="whitespace-nowrap">
-                                    <td class="px-6 py-4 text-sm text-gray-500">
-                                        2
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900">
-                                            Ferrari
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900">Roma</div>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-900">
-                                        1 days
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        $200
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        $200
-                                    </td>
-                                </tr>
+                                
                                 <!-- <tr class="border-b-2 whitespace-nowrap">
                                     <td class="px-6 py-4 text-sm text-gray-500">
                                         3
