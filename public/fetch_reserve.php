@@ -3,7 +3,7 @@
 include('configs/database.php');
 include('functions.php');
 $output = array();
-$customerEmail = 'ali@gmail.com';
+$customerEmail = 'salma@gmail.com';
 
 $query = $databaseConnexion->prepare("
     SELECT reservation.*
@@ -24,7 +24,6 @@ foreach ($result as $row) {
     $sub_array[] = $row["reserve_date"];
     $sub_array[] = $row["pickup_date"];
     $sub_array[] = $row["return_date"];
-    $sub_array[] = $row["damage_compensation"];
     $sub_array[] = $row["pickup_location"];
     $sub_array[] = $row["Car_plate_id"];
     $sub_array[] = $row["Customer_ssn"];

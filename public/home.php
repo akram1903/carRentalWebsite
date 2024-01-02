@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <?php
+<?php
   session_start();
   require_once('navBar.php');
   require_once('filterOfiice.php');
@@ -15,6 +13,8 @@
 
 
   ?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -216,7 +216,7 @@
 
     function redirectToAnotherPage() {
         // Change 'your-page.html' to the actual page URL you want to redirect to
-        window.location.href = 'invoice.php';
+        window.location.href = 'preInvoice.php';
     }
 
 </script>

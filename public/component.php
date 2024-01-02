@@ -4,12 +4,13 @@ $query = $databaseConnexion->prepare("SELECT * FROM reservation");
 $query->execute();
 $result = $query->fetchAll();
 $totalrecords = $query->rowCount();
-
+session_start();
+require_once('navBar.php');
 ?>
 
 <?php
 // Assume you have a database connection
-$databaseConnexion = new mysqli("localhost", "root", "123456", "carrentalsystem");
+$databaseConnexion = new mysqli("localhost", "root", "", "CarRentalSystem");
 
 // Check connection
 if ($databaseConnexion->connect_error) {
@@ -17,7 +18,7 @@ if ($databaseConnexion->connect_error) {
 }
 
 // Assume you have a specific customer SSN
-$customerEmail = "ali@gmail.com"; // Change this to the email of the customer you want to retrieve
+$customerEmail = "salma@gmail.com"; // Change this to the email of the customer you want to retrieve
 
 // Query to retrieve data from a specific customer using email
 $query = $databaseConnexion->prepare("SELECT ssn, fName, lName, email, phone_no, password, wallet FROM customer WHERE email = ?");
@@ -25,7 +26,8 @@ $query->bind_param("s", $customerEmail);
 $query->execute();
 
 // Bind the result variables
-$query->bind_result($ssn, $fName, $lName, $email, $phone_no, $password, $wallet, $Customercol);
+$query->bind_result($ssn, $fName, $lName, $email, $phone_no, $password, $wallet);
+
 // Fetch the result
 $query->fetch();
 
@@ -43,13 +45,18 @@ $query->close();
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://cdn.tailwindcss.com" rel="stylesheet" />
-  <link href="styles.css" rel="stylesheet" />
+  <link href="/dist/output.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
 
   <!--Regular Datatables CSS-->
   <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
   <!--Responsive Extension Datatables CSS-->
   <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
-
+   <link rel="stylesheet" href="../styles.css">
   <style>
     /*Overrides for Tailwind CSS */
 
@@ -203,15 +210,11 @@ $query->close();
 
         <!-- Profile Card -->
         <div class="bg-white p-3 border-t-4 border-blue-400">
-          <div class="image overflow-hidden">
-            <img class="h-auto w-full mx-auto" src="https://lavinephotography.com.au/wp-content/uploads/2017/01/PROFILE-Photography-112.jpg" alt="" />
-          </div>
           <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">
             <?php echo $fName; ?> <?php echo $lName; ?>
           </h1>
           <ul class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
             <li class="flex items-center py-3">
-              <span>Status</span>
 
             </li>
             <li class="flex items-center py-3">
@@ -283,10 +286,7 @@ $query->close();
                 <div class="px-4 py-2 font-semibold">Contact No.</div>
                 <div class="px-4 py-2"><?php echo $phone_no; ?></div>
               </div>
-              <div class="grid grid-cols-2">
-                <div class="px-4 py-2 font-semibold">Customercol</div>
-                <div class="px-4 py-2"><?php echo $Customercol; ?></div>
-              </div>
+           
               <!-- <div class="grid grid-cols-2">
                   <div class="px-4 py-2 font-semibold">Permanant Address</div>
                   <div class="px-4 py-2">Arlington Heights, IL, Illinois</div>
@@ -331,13 +331,12 @@ $query->close();
                       <th data-priority="2">reserve_date</th>
                       <th data-priority="3">pickup_date</th>
                       <th data-priority="4">return_date</th>
-                      <th data-priority="5">damage_compensation</th>
-                      <th data-priority="6">pickup_location</th>
-                      <th data-priority="7">Car_plate_id</th>
-                      <th data-priority="8">Customer_ssn</th>
-                      <th data-priority="9">payment_date</th>
-                      <th data-priority="10">payment_Method</th>
-                      <th data-priority="11">Delete</th>
+                      <th data-priority="5">pickup_location</th>
+                      <th data-priority="6">Car_plate_id</th>
+                      <th data-priority="7">Customer_ssn</th>
+                      <th data-priority="8">payment_date</th>
+                      <th data-priority="9">payment_Method</th>
+                      <th data-priority="10">Delete</th>
                     </tr>
                   </thead>
                 </table>
