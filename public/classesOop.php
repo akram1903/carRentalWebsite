@@ -230,6 +230,14 @@ class admin
         mysqli_close($cn);
         return $result;
     }
+    static function  deletecar($plate_id){
+        require_once('config.php');
+        $qry = "DELETE FROM car WHERE plate_id='$plate_id'";
+        $cn = mysqli_connect(DB_host, DB_user_name, DB_user_password, DB_name);
+        $result = mysqli_query($cn, $qry);
+        mysqli_close($cn);
+        return $result;
+    }
         
 }
 ?>

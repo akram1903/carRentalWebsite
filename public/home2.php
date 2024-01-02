@@ -152,7 +152,7 @@ $cars = customer::showAllCars();
           </div>
           <div class="p-6 pt-3">
             <form action="handleDeleteCar.php" method="post">
-            <input type="hidden" id="Car_plate_id" name="Car_plate_id" value="<?= $car["0"] ?>">
+            <input type="hidden" id="plate_id" name="plate_id" value="<?= $car["0"] ?>">
             <button  class="block w-full select-none rounded-lg bg-red-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="submit">
               Delete
             </button>
