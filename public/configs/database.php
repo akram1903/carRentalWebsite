@@ -1,4 +1,4 @@
 <?php
 
 
-$databaseConnexion = new PDO('mysql:host=127.0.0.1;dbname=carrentalsystem', 'root', '');
+$databaseConnexion = new PDO('mysql:host=host.docker.internal;port=3307;dbname=CarRentalSystem', 'root', '123456');
