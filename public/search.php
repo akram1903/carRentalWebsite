@@ -21,7 +21,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
 
-    <title>Document</title>
+    <title>Advanced search</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
     <link
   rel="stylesheet"
@@ -94,7 +94,7 @@
                         OR r.reserve_date = '$search'
                         OR r.pickup_date = '$search'
                         OR r.return_date = '$search'
-                        OR r.pickup_location = '$search'";
+                        ";
                 // ------------------------------------------------//
                 // $qry = "SELECT * FROM posts where users_id= $user_id";
                 $connection_to_db = mysqli_connect(DB_host,DB_user_name,DB_user_password,DB_name); 
