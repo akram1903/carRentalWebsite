@@ -3,7 +3,7 @@
 include('configs/database.php');
 include('functions.php');
 $output = array();
-$customerEmail = 'salma@gmail.com';
+$customerEmail = 'rana@gmail.com';
 
 $query = $databaseConnexion->prepare("
     SELECT reservation.*

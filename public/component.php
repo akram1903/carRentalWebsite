@@ -10,7 +10,7 @@ require_once('navBar.php');
 
 <?php
 // Assume you have a database connection
-$databaseConnexion = new mysqli("localhost", "root", "", "CarRentalSystem");
+$databaseConnexion = new mysqli("localhost", "root", "123456", "CarRentalSystem",3307);
 
 // Check connection
 if ($databaseConnexion->connect_error) {
@@ -18,7 +18,7 @@ if ($databaseConnexion->connect_error) {
 }
 
 // Assume you have a specific customer SSN
-$customerEmail = "salma@gmail.com"; // Change this to the email of the customer you want to retrieve
+$customerEmail = "rana@gmail.com"; // Change this to the email of the customer you want to retrieve
 
 // Query to retrieve data from a specific customer using email
 $query = $databaseConnexion->prepare("SELECT ssn, fName, lName, email, phone_no, password, wallet FROM customer WHERE email = ?");

@@ -11,7 +11,7 @@
 //     echo("<h1> in handle transaction</h1>");
 //     // You can perform further processing/validation of data here
 
-    
+
 // } else {
 //     echo "<p>No data received.</p>";
 // }
@@ -27,7 +27,7 @@ if (empty($_SESSION["car"])) {
 
 $customer = unserialize($_SESSION["customer"]);
 $car = unserialize($_SESSION["car"]);
-$carPlate = $car["0"];
+$carPlate = $car["0"]["0"];
 $ssn = $customer->ssn;
 $start = $_SESSION["start"];
 $end = $_SESSION["end"];
@@ -38,12 +38,16 @@ $conn = Connect();
 // not done yet
 $reserveDate = date("Y-m-d");
 
-$sql = "INSERT INTO `reservation` (`Car_plate_id`, `Customer_ssn`, `pickup_date`, `return_date`, reserve_date) VALUES ('$carPlate','$ssn','$start','$end','$reserveDate');";
+$sql = "INSERT INTO reservation (Car_plate_id, Customer_ssn, pickup_date, return_date, reserve_date) VALUES ('$carPlate','$ssn','$start','$end','$reserveDate');";
 $sql .= "UPDATE CarRentalSystem.Car SET reserved = TRUE WHERE plate_id ='$carPlate';";
 
 if($conn->multi_query($sql)===FALSE){
     echo "Error: " . $conn->error;
     die();
+   
+}
+else{
+    header("location:home.php?msg=Successful_Transaction");
 }
 // we need also to ulter car to change reserved to true
 // $sql = "UPDATE CarRentalSystem.Car SET reserve = TRUE WHERE plate_id ='{$car['0']}';";
