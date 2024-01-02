@@ -45,6 +45,9 @@ if($conn->multi_query($sql)===FALSE){
     echo "Error: " . $conn->error;
     die();
 }
+else{
+    header("location:home.php?msg=Successful_Transaction");
+}
 // we need also to ulter car to change reserved to true
 // $sql = "UPDATE CarRentalSystem.Car SET reserve = TRUE WHERE plate_id ='{$car['0']}';";
 
