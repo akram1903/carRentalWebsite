@@ -13,7 +13,8 @@
   //To get the user object from session
   $customer = unserialize($_SESSION["customer"]);
   $car = unserialize($_SESSION["car"]);
-var_dump($car);
+$duration=3;
+$Tax_Rate=0.14;
 
 
   ?>
@@ -118,7 +119,7 @@ var_dump($car);
                             <tbody class="bg-white">
                                 <tr class="whitespace-nowrap">
                                     <td class="px-6 py-4 text-sm text-gray-500">
-                                        1
+                                    <?=$car["0"]?>
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="text-sm text-gray-900">
@@ -128,9 +129,7 @@ var_dump($car);
                                     <td class="px-6 py-4">
                                         <div class="text-sm text-gray-900"> <?=$car["1"]?></div>
                                     </td>
-                                    <?
-                                    $duration=3;
-                                    ?>
+                                   
                                     <td class="px-6 py-4 text-sm text-gray-900">
                                         <?=$duration?>
                                     </td>
@@ -138,7 +137,7 @@ var_dump($car);
                                     <?=$car["4"]?>
                                     </td>
                                     <td class="px-6 py-4">
-                                    
+                                    <?=$duration * $car["4"]?>
                                     </td>
                                 </tr>
                                 
@@ -164,19 +163,19 @@ var_dump($car);
                                 <tr class="">
                                     <td colspan="3"></td>
                                     <td class="text-sm font-bold">Sub Total</td>
-                                    <td class="text-sm font-bold tracking-wider"><b>$290</b></td>
+                                    <td class="text-sm font-bold tracking-wider"><b><?=$duration * $car["4"]?></b></td>
                                 </tr>
                                 <!--end tr-->
                                 <tr>
                                     <th colspan="3"></th>
                                     <td class="text-sm font-bold"><b>Tax Rate</b></td>
-                                    <td class="text-sm font-bold"><b>$1.50%</b></td>
+                                    <td class="text-sm font-bold"><b>$<?=$Tax_Rate*100?>%</b></td>
                                 </tr>
                                 <!--end tr-->
                                 <tr class="text-white bg-gray-800">
                                     <th colspan="3"></th>
                                     <td class="text-sm font-bold"><b>Total</b></td>
-                                    <td class="text-sm font-bold"><b>$333.5</b></td>
+                                    <td class="text-sm font-bold"><b><?=($Tax_Rate*$duration * $car["4"])+$duration * $car["4"]?></b></td>
                                 </tr>
                                 <!--end tr-->
 

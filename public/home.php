@@ -3,6 +3,7 @@
   <?php
   session_start();
   require_once('navBar.php');
+  require_once('filterOfiice.php');
   if (empty($_SESSION["customer"])) {
     header("location:forbidden.php");
   }
@@ -42,6 +43,11 @@
     </div>
   </div>
 </div>
+
+
+
+
+
 
 <?php
           foreach ($cars as $car) {
@@ -187,6 +193,7 @@
 <?php
    }
           ?>
+
 
 
 
