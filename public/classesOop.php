@@ -55,6 +55,9 @@ class customer
         $cn->close(); //you must close the connection
         return $customer;
     }
+        
+    
+  
     static function signUp($email, $password, $fName,$lName,$phone_no)
     {
         //connection with database
@@ -109,7 +112,7 @@ class customer
         mysqli_close($cn);
         return $data;
     }
-    function getCarPhotos($plate_id)
+    static function getCarPhotos($plate_id)
     {
         require_once('config.php');
         //show posts of the user in descending order
@@ -126,7 +129,7 @@ class customer
         require_once('config.php');
         //show posts of the user in descending order
         //get data from 2 tables in DB use->join
-        $qry = "SELECT * FROM car where plate_id='$plate_id'";
+        $qry = "SELECT * FROM Car where plate_id='$plate_id'";
         $cn = mysqli_connect(DB_host, DB_user_name, DB_user_password, DB_name ,DB_port);
         $result = mysqli_query($cn, $qry);
         $data = mysqli_fetch_all($result);
@@ -149,15 +152,92 @@ class customer
 
     
 }
-class admin extends customer
+class admin 
 {
     //override
+    public $email;
+    protected $password;
     public $role = "admin";
-    function deleteUser()
+    //Methods
+    public function __construct($email, $password)
     {
+        $this->email = $email;
+        $this->password= $password;
     }
-    function showAllUser()
+
+
+    static function login($email, $password)
+    //Must be static so it can be accessed without creating object 
+    //because login happens before there exist a user 
     {
+        $admin = null;
+        //connection with database
+        require_once('connection.php'); //gets page data once 
+        //query to Check User in database with correct email and password 
+        $qry = "SELECT * FROM admin WHERE email='$email' AND password='$password'";
+        //Double quotation to detect variables
+        //email and passeord are strings -> ' '
+        $cn = Connect();
+        //Connect not secure attack->SQL injection instead use BDO object
+        // var_dump($cn);
+        $result = $cn->query($qry);
+        //this is to execute the query takes 1-connection 2-query 
+        //This gets data so you must fetch:
+        if ($data = mysqli_fetch_assoc($result)) { //returns associative array if there is a user found with this information in DB
+           // switch ($data["role"]) {
+                    //Make the object according to the role either user or admin
+                //case 'customer':
+                    $admin = new admin($data["email"], $data["password"]);
+                //    break;
+
+                //case 'admin':
+                  //  $customer = new admin($data["ssn"], $data["fName"], $data["lName"], $data["email"], $data["password"],$data["phone_no"],$data["wallet"]);
+                  //  break;
+         //   }
+        }
+        $cn->close(); //you must close the connection
+        return $admin;
     }
+
+    static function getreservations()
+    {
+        require_once('config.php');
+        //show posts of the user in descending order
+        //get data from 2 tables in DB use->join
+        $qry = "SELECT * FROM reservation";
+        $cn = mysqli_connect(DB_host, DB_user_name, DB_user_password, DB_name ,DB_port);
+        $result = mysqli_query($cn, $qry);
+        $data = mysqli_fetch_all($result);
+        mysqli_close($cn);
+        return $data;
+
+    }
+    static function addcar($plate_id, $model, $make,$year,$price,$office_id){
+        
+            require_once('config.php');
+            $qry = "INSERT INTO car (plate_id, model, make,year,price,office_office_id) VALUES('$plate_id', '$model', '$make',$year,$price,$office_id)";
+            $cn = mysqli_connect(DB_host, DB_user_name, DB_user_password, DB_name);
+            $result = mysqli_query($cn, $qry);
+            mysqli_close($cn);
+            return $result;
+        
+    }
+    static function deleteReservation($reservation_no){
+        require_once('config.php');
+        $qry = "DELETE FROM reservation WHERE reservation_no=$reservation_no";
+        $cn = mysqli_connect(DB_host, DB_user_name, DB_user_password, DB_name);
+        $result = mysqli_query($cn, $qry);
+        mysqli_close($cn);
+        return $result;
+    }
+    static function  deletecar($plate_id){
+        require_once('config.php');
+        $qry = "DELETE FROM car WHERE plate_id='$plate_id'";
+        $cn = mysqli_connect(DB_host, DB_user_name, DB_user_password, DB_name);
+        $result = mysqli_query($cn, $qry);
+        mysqli_close($cn);
+        return $result;
+    }
+        
 }
 ?>

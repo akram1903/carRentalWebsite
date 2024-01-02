@@ -27,6 +27,9 @@ $endDateTime = new DateTime($endDate);
 $interval = $startDateTime->diff($endDateTime);
 
 $duration=$interval->days;
+$amount = $duration*$car["0"]["4"];
+
+$_SESSION["amount"]=$amount;
 // Create DateTime objects from the string dates
 // $startDateTime = DateTime::createFromFormat('m/d/Y', "$startDate");
 // $endDateTime = DateTime::createFromFormat('m/d/Y', "$endDate");
@@ -159,9 +162,7 @@ $duration=$interval->days;
                                 <td class="px-6 py-4">
                                     <div class="text-sm text-gray-900"> <?= $car["0"]["3"] ?></div>
                                 </td>
-                                <?
-                                $duration = $daysDifference;
-                                ?>
+                                
                                 <td class="px-6 py-4 text-sm text-gray-900">
                                     <?= $duration ?>
                                 </td>
