@@ -3,9 +3,9 @@ function Connect()
 {
     $dbhost = "localhost";
 	$dbuser = "root";
-	$dbpass = "123456";
+	$dbpass = "";
 	$dbname = "CarRentalSystem";
-    $dbport = 3307;
+    $dbport = 3306;
 	//Create Connection
 	$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname,$dbport) or die($conn->connect_error);
 
