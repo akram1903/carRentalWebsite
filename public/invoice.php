@@ -159,9 +159,7 @@ $duration=$interval->days;
                                 <td class="px-6 py-4">
                                     <div class="text-sm text-gray-900"> <?= $car["0"]["3"] ?></div>
                                 </td>
-                                <?
-                                $duration = $daysDifference;
-                                ?>
+                                
                                 <td class="px-6 py-4 text-sm text-gray-900">
                                     <?= $duration ?>
                                 </td>
