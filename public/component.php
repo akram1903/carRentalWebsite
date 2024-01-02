@@ -4,10 +4,8 @@ $query = $databaseConnexion->prepare("SELECT * FROM reservation");
 $query->execute();
 $result = $query->fetchAll();
 $totalrecords = $query->rowCount();
-
 session_start();
 require_once('navBar.php');
-
 ?>
 
 <?php
