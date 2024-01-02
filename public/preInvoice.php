@@ -13,9 +13,9 @@ $customer=unserialize($_SESSION["customer"]);
 //  var_dump($car);
 // var_dump($customer);
 // var_dump($reserved_duration);
-var_dump($_POST["Car_plate_id"]);
+// var_dump($_POST["Car_plate_id"]);
 $car=customer::getCar($_POST["Car_plate_id"]);
-var_dump($car);
+// var_dump($car);
 if (!empty($car)) {
     //if customer found before redirecting to home put in sesseion
     //To put object in session you must use->serialize

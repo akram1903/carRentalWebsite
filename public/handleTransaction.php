@@ -31,14 +31,14 @@ $carPlate = $car["0"]["0"];
 $ssn = $customer->ssn;
 $start = $_SESSION["start"];
 $end = $_SESSION["end"];
-
+$amount = $_SESSION["amount"];
 // teeer 3ala database
 require_once('connection.php');
 $conn = Connect();
 // not done yet
 $reserveDate = date("Y-m-d");
 
-$sql = "INSERT INTO reservation (Car_plate_id, Customer_ssn, pickup_date, return_date, reserve_date) VALUES ('$carPlate','$ssn','$start','$end','$reserveDate');";
+$sql = "INSERT INTO reservation (Car_plate_id, Customer_ssn, pickup_date, return_date, reserve_date, amount) VALUES ('$carPlate','$ssn','$start','$end','$reserveDate',$amount);";
 $sql .= "UPDATE CarRentalSystem.Car SET reserved = TRUE WHERE plate_id ='$carPlate';";
 
 if($conn->multi_query($sql)===FALSE){
