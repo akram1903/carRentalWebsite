@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('navBar.php');
-require_once('filterOfiice.php');
+// require_once('filterOfiice.php');
 if (empty($_SESSION["customer"])) {
   header("location:forbidden.php");
 }
@@ -185,12 +185,13 @@ $cars = $customer->showAllCars();
             </div>
           </div>
           <div class="p-6 pt-3">
-            <?php
-            $_SESSION["car"] = serialize($car);
-            ?>
-            <button onclick="redirectToAnotherPage()" class="block w-full select-none rounded-lg bg-gray-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+            <form action="preInvoice.php" method="post">
+            <input type="hidden" id="Car_plate_id" name="Car_plate_id" value="<?= $car["0"] ?>">
+            <button  class="block w-full select-none rounded-lg bg-gray-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="submit">
               Reserve
             </button>
+            </form>
+            <!-- onclick="redirectToAnotherPage()" -->
           </div>
         </div>
       <!-- </div> -->
@@ -225,6 +226,9 @@ $cars = $customer->showAllCars();
   function redirectToAnotherPage() {
     // Change 'your-page.html' to the actual page URL you want to redirect to
     window.location.href = 'preInvoice.php';
+    <?php
+            $_SESSION["car"] = serialize($car);
+            ?>
   }
   
     setTimeout(function() {document.getElementById('alert-additional-content-3').remove()},3000);

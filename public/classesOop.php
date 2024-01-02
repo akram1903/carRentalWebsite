@@ -121,6 +121,31 @@ class customer
         mysqli_close($cn);
         return $data;
     }
+    static function getCar($plate_id)
+    {
+        require_once('config.php');
+        //show posts of the user in descending order
+        //get data from 2 tables in DB use->join
+        $qry = "SELECT * FROM car where plate_id='$plate_id'";
+        $cn = mysqli_connect(DB_host, DB_user_name, DB_user_password, DB_name ,DB_port);
+        $result = mysqli_query($cn, $qry);
+        $data = mysqli_fetch_all($result);
+        mysqli_close($cn);
+        return $data;
+    }
+    
+    static function getreservedDuration($plate_id)
+    {
+        require_once('config.php');
+        //show posts of the user in descending order
+        //get data from 2 tables in DB use->join
+        $qry = "SELECT * FROM reservation where Car_plate_id='$plate_id' ORDER BY return_date ";
+        $cn = mysqli_connect(DB_host, DB_user_name, DB_user_password, DB_name ,DB_port);
+        $result = mysqli_query($cn, $qry);
+        $data = mysqli_fetch_all($result);
+        mysqli_close($cn);
+        return $data;
+    }
 
     
 }

@@ -11,32 +11,47 @@ require_once('classesOop.php');
 //To get the user object from session
 $customer = unserialize($_SESSION["customer"]);
 $car = unserialize($_SESSION["car"]);
-$startDate = $_POST["start"];
+
+$startDate= $_POST["start"];
 $endDate = $_POST["end"];
-$duration=0;
+
 // echo("$startDate<br>");
 // echo("$endDate<br>");
 // var_dump($car);
 // var_dump($customer);
+// Create DateTime objects from the date strings
+$startDateTime = new DateTime($startDate);
+$endDateTime = new DateTime($endDate);
 
-// Create DateTime objects from the string dates
-$startDateTime = DateTime::createFromFormat('m/d/Y', "$startDate");
-$endDateTime = DateTime::createFromFormat('m/d/Y', "$endDate");
-
-$_SESSION["start"] = $startDateTime->format('Y-m-d');
-$_SESSION["end"] = $endDateTime->format('Y-m-d');
-
-if($startDateTime!==False && $endDateTime!==FALSE){
-    // Calculate the difference between dates
+// Calculate the difference between two dates
 $interval = $startDateTime->diff($endDateTime);
 
+$duration=$interval->days;
+// Create DateTime objects from the string dates
+// $startDateTime = DateTime::createFromFormat('m/d/Y', "$startDate");
+// $endDateTime = DateTime::createFromFormat('m/d/Y', "$endDate");
+
+//   $_SESSION["start"] = $startDateTime->format('Y-m-d');
+//    $_SESSION["end"] = $endDateTime->format('Y-m-d');
+
+
+ $_SESSION["start"] = $startDate;
+ $_SESSION["end"] = $endDate;
+//  var_dump($startDate);
+    // var_dump($endDate);
+// if($startDateTime!==null && $endDateTime!==FALSE){
+    // Calculate the difference between dates
+// $interval = $startDateTime->diff($endDateTime);
+// var_dump($interval)
+
 // Get the difference in days
-$daysDifference = $interval->format('%a');
-}
-else{
-    var_dump($startDateTime);
-    var_dump($endDateTime);
-}
+// $daysDifference = $interval->format('%a');
+// var_dump(daysDifference)
+// }
+// else{
+    // var_dump($startDateTime);
+    // var_dump($endDateTime);
+// }
 
 ?>
 <!DOCTYPE html>
@@ -130,19 +145,19 @@ else{
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="text-sm text-gray-900">
-                                        <?= $car["0"] ?>
+                                        <?= $car["0"]["0"] ?>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="text-sm text-gray-900">
-                                        <?= $car["2"] ?>
+                                        <?= $car["0"]["2"] ?>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900"> <?= $car["1"] ?></div>
+                                    <div class="text-sm text-gray-900"> <?= $car["0"]["1"] ?></div>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900"> <?= $car["3"] ?></div>
+                                    <div class="text-sm text-gray-900"> <?= $car["0"]["3"] ?></div>
                                 </td>
                                 <?
                                 $duration = $daysDifference;
@@ -151,10 +166,10 @@ else{
                                     <?= $duration ?>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <?= $car["4"] ?>
+                                    <?= $car["0"]["4"] ?>
                                 </td>
                                 <td class="px-6 py-4 text-sm text-gray-900">
-                                    <?= $duration*$car["4"] ?>
+                                    <?= $duration*$car["0"]["4"] ?>
                                 </td>
                             </tr>
 
@@ -180,7 +195,7 @@ else{
                             <tr class="">
                                 <td colspan="3"></td>
                                 <td class="text-sm font-bold">Sub Total</td>
-                                <td class="text-sm font-bold tracking-wider"><b>$<?= $duration*$car["4"] ?></b></td>
+                                <td class="text-sm font-bold tracking-wider"><b>$<?= $duration*$car["0"]["4"] ?></b></td>
                             </tr>
                             <!--end tr-->
                             <tr>
@@ -192,7 +207,7 @@ else{
                             <tr class="text-white bg-gray-800">
                                 <th colspan="3"></th>
                                 <td class="text-sm font-bold"><b>Total</b></td>
-                                <td class="text-sm font-bold"><b>$<?= $duration*$car["4"]*1.14 ?></b></td>
+                                <td class="text-sm font-bold"><b>$<?= $duration*$car["0"]["4"]*1.14 ?></b></td>
                             </tr>
                             <!--end tr-->
 
