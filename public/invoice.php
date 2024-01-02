@@ -13,6 +13,7 @@ $customer = unserialize($_SESSION["customer"]);
 $car = unserialize($_SESSION["car"]);
 $startDate = $_POST["start"];
 $endDate = $_POST["end"];
+$duration=0;
 // echo("$startDate<br>");
 // echo("$endDate<br>");
 // var_dump($car);
