@@ -49,23 +49,6 @@ else{
     <title>Invoice</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-  }
-  require_once('classesOop.php');
-  //To get the user object from session
-  $customer = unserialize($_SESSION["customer"]);
-  $car = unserialize($_SESSION["car"]);
-$duration=3;
-$Tax_Rate=0.14;
-
-
-  ?>
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Invoice</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
 
 <body>
     <div class="flex items-center justify-center min-h-screen bg-indigo-100">
