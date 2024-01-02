@@ -113,6 +113,7 @@
                         <th class="py-2 px-4 border-b">Price</th>
                         <th class="py-2 px-4 border-b">Registration Date</th>
                         <th class="py-2 px-4 border-b">Office ID</th>
+                        <th class="py-2 px-4 border-b">car_status</th>
                         <th class="py-2 px-4 border-b">Car Photos</th>
                         <th class="py-2 px-4 border-b">Customer SSn</th>
                         <th class="py-2 px-4 border-b">First Name</th>
@@ -123,9 +124,7 @@
                         <th class="py-2 px-4 border-b">reservation date</th>
                         <th class="py-2 px-4 border-b">pickup date</th>
                         <th class="py-2 px-4 border-b">return date</th>
-                        <th class="py-2 px-4 border-b">pickup location</th>
-                        <th class="py-2 px-4 border-b">payment date</th>
-                        <th class="py-2 px-4 border-b">payment Method</th>
+
 
                     </tr>
                 </thead>';
@@ -133,6 +132,7 @@
                 <tbody>
                 <?php foreach ($cars as $car): ?>
                     <tr>
+
                         <td class="py-2 px-4 border-b"><?php echo $car["0"]; ?></td>
                         <td class="py-2 px-4 border-b"><?php echo $car["1"]; ?></td>
                         <td class="py-2 px-4 border-b"><?php echo $car["2"]; ?></td>
@@ -140,8 +140,9 @@
                         <td class="py-2 px-4 border-b"><?php echo $car["4"]; ?></td>
                         <td class="py-2 px-4 border-b"><?php echo $car["5"]; ?></td>
                         <td class="py-2 px-4 border-b"><?php echo $car["6"]; ?></td>
+                        <td class="py-2 px-4 border-b"><?php echo $car["7"]; ?></td>
                         <td class="py-2 px-4 border-b"><?php
-                        $image_path = "../img/" . $car["7"];
+                        $image_path = "../img/" . $car["8"];
                         ?>
                         <div class="swiper-slide">
                         <img src="<?=$image_path?>" alt="Car Photo">
@@ -149,36 +150,27 @@
                          <?php
                           ?></td>
                         
-                        <td class="py-2 px-4 border-b"><?php echo $car["8"]; ?></td>
                         <td class="py-2 px-4 border-b"><?php echo $car["9"]; ?></td>
                         <td class="py-2 px-4 border-b"><?php echo $car["10"]; ?></td>
                         <td class="py-2 px-4 border-b"><?php echo $car["11"]; ?></td>
                         <td class="py-2 px-4 border-b"><?php echo $car["12"]; ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo $car["15"]; ?></td>
+                        <td class="py-2 px-4 border-b"><?php echo $car["13"]; ?></td>
                         <td class="py-2 px-4 border-b"><?php echo $car["16"]; ?></td>
                         <td class="py-2 px-4 border-b"><?php echo $car["17"]; ?></td>
                         <td class="py-2 px-4 border-b"><?php echo $car["18"]; ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo $car["20"]; ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo $car["23"]; ?></td>
-                        <td class="py-2 px-4 border-b"><?php echo $car["24"]; ?></td>
-                        <!-- 
-
-photo7
-password13
-wallet14
-reservation_no15
-damage_compensation19
-Car_plate_id21
-Customer_ssn22
-payment_date
-payment_Method -->
-
+                        <td class="py-2 px-4 border-b"><?php echo $car["19"]; ?></td>
 
                 <?php endforeach; ?>
             </tbody>
             <?php
-                }
-            }
+                }else{
+                    ?>
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+        <span class="font-medium">No such data!</span> Change a few things up and try searching again.
+        </div>
+                    <?php    
+                    }
+            } 
                     ?>
  
         </table>
